@@ -1,7 +1,7 @@
 FROM ubuntu:latest AS BUILD_IMAGE
 RUN apt update -y
 RUN apt upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt install apache2 mysql-server php -y
+RUN DEBIAN_FRONTEND=noninteractive apt install apache2 mysql-server php php-mysql -y
 EXPOSE 80
 EXPOSE 3306
 RUN echo '<?php echo "Hello World"; ?>' > /var/www/html/index.php
