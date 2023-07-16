@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    build: 
+      context: .
+      dockerfile: dockerfiles/mysql-dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: froggers
+      MYSQL_USER: ota
+      MYSQL_PASSWORD: password
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./sql_scipts:/docker-entrypoint-initdb.d
+  
+  web:
+    build: 
+      context: .
+      dockerfile: ./dockerfiles/php-dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    environment:
+      DB_HOST: db
+      DB_USER: ota
+      DB_PASSWORD: password
+      DB_NAME: froggers
