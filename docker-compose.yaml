@@ -11,8 +11,8 @@ services:
       MYSQL_USER: ota
       MYSQL_PASSWORD: password
     volumes:
-      - dbdata:/var/lib/mysql
-      - ./sql_scipts:/docker-entrypoint-initdb.d
+      - ./xdbdata:/var/lib/mysql
+      - ./sql_scripts:/docker-entrypoint-initdb.d
   
   web:
     build: 
