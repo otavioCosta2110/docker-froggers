@@ -1,5 +1,4 @@
 FROM mysql:8.0
 
-COPY ./sql_scripts /docker-entrypoint-initdb.d
-
-RUN mysql -uota -ppassword < create_db.sql  && mysql -uota -ppassword < insert_db.sql
+COPY ./sql_scripts/create_db.sql /docker-entrypoint-initdb.d/
+COPY ./sql_scripts/insert_db.sql /docker-entrypoint-initdb.d/
